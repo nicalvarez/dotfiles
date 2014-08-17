@@ -1,39 +1,42 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
+
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'ivalkeen/nerdtree-execute'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'scratch.vim'
+Plugin 'Syntastic'
 Plugin 'kien/ctrlp.vim'
 
-
-" SnipMate y dependencias
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'bling/vim-airline'
+" UltiSnips + snippets de honza
+Plugin 'UltiSnips'
+Plugin 'honza/vim-snippets.git'
 
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'bufkill.vim'
 
-
+" Themes
 Plugin 'Mustang2'
 Plugin 'Solarized'
 Plugin 'molokai'
 
-Plugin 'xuhdev/SingleCompile'
-
+Plugin 'bling/vim-airline'
+Plugin 'wikitopian/hardmode'
 
 call vundle#end()
 filetype plugin indent on
 
+" Configuración del path de clang
 let g:clang_library_path = '/usr/lib/llvm-3.4/lib/'
+let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+if isdirectory(s:clang_library_path)
+    let g:clang_library_path=s:clang_library_path
+endif
+
 let &keywordprg = ':help'
 
 let g:airline#extensions#tabline#enabled = 1
@@ -59,10 +62,8 @@ inoremap <C-Q> :BD<CR>
 nmap <silent><C-s> :up <CR>
 imap <silent><C-s> <Esc>:up <CR>i
 nmap <silent> <F9> :NERDTreeToggle <CR>
-nmap <F8> :up<CR>:SCCompile <CR>
-nmap <F5> :up<CR>:SCCompileRun <CR>
-imap <F8> <Esc>:up<CR>:SCCompile <CR>
-imap <F5> <Esc>:up<CR>:SCCompileRun <CR>
+nnoremap <silent><leader>h <Esc>:call ToggleHardMode()<CR>
+"<C-D-p>
 
 vnoremap < <gv
 vnoremap > >gv
@@ -123,7 +124,11 @@ else
 endif
 
 set background=dark
-set gfn=Source\ Code\ Pro\ for\ Powerline\ 11
+if has('gui_macvim')
+    set gfn=Sauce\ Code\ Powerline:h13
+else
+    set gfn=Source\ Code\ Pro\ for\ Powerline\ 11
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,6 +189,11 @@ set ffs=unix,dos,mac
 
 nnoremap <silent><M-C-n> :bn<CR>  
 nnoremap <silent><M-C-p> :bN<CR>
+if has('gui_macvim')
+    nnoremap <silent><D-N> :bn<CR>  
+    nnoremap <silent><D-P> :bN<CR>
+endif
+
 set scrolloff=4
 set mouse=a
 
