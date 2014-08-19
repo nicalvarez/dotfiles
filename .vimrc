@@ -46,6 +46,10 @@ if has("gui_running")
     let g:Powerline_symbols = 'fancy'
 endif
 
+if has("autocmd")
+    autocmd BufWritePost .vimrc source $MYVIMRC
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
