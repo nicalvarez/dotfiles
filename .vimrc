@@ -25,7 +25,12 @@ Plugin 'Solarized'
 Plugin 'molokai'
 
 Plugin 'bling/vim-airline'
-Plugin 'wikitopian/hardmode'
+Plugin 'xeross/vim-hardmode'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+
+Plugin 'zoomwintab.vim'
+Plugin 'Lokaltog/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
@@ -67,7 +72,7 @@ nmap <silent><C-s> :up <CR>
 imap <silent><C-s> <Esc>:up <CR>i
 nmap <silent> <F9> :NERDTreeToggle <CR>
 nnoremap <silent><leader>h <Esc>:call ToggleHardMode()<CR>
-"<C-D-p>
+let g:HardMode_hjklLimit=2
 
 vnoremap < <gv
 vnoremap > >gv
@@ -92,6 +97,8 @@ nnoremap <C-b> <C-b>zz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
+" Hard Mode
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader Mappings
@@ -171,8 +178,10 @@ set showcmd
 set history=1000
 
 set nowrap
+set diffopt=filler,vertical
 
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_always_populate_loc_list = 1
 let g:SingleCompile_alwayscompile = 0
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
