@@ -200,6 +200,8 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+nmap <F5> :up <bar> make %:r <bar> !./%:r<CR>
+nmap <F6> :up <bar> make %:r<CR>
 nnoremap <silent><M-C-n> :bn<CR>  
 nnoremap <silent><M-C-p> :bN<CR>
 if has('gui_macvim')
