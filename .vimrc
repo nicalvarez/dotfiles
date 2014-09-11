@@ -9,29 +9,38 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ivalkeen/nerdtree-execute'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Syntastic'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'Syntastic'
+"Plugin 'kien/ctrlp.vim'
 
-" UltiSnips + snippets de honza
+ "UltiSnips + snippets de honza
 Plugin 'UltiSnips'
 Plugin 'honza/vim-snippets.git'
 
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'bufkill.vim'
+"Plugin 'Rip-Rip/clang_complete'
 
 " Themes
 Plugin 'Mustang2'
 Plugin 'Solarized'
 Plugin 'molokai'
+Plugin 'zenorocha/dracula-theme'
 
 Plugin 'bling/vim-airline'
 Plugin 'xeross/vim-hardmode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-eunuch'
 
 Plugin 'zoomwintab.vim'
-Plugin 'Lokaltog/vim-easymotion'
-
+"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mileszs/ack.vim'
+"Plugin 'Raimondi/delimitMate'
+Plugin 'kana/vim-smartinput'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'osyo-manga/vim-over'
+"Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'majutsushi/tagbar'
+"Plugin 'roman/golden-ratio'
+Plugin 'zhaocai/GoldenView.Vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -42,6 +51,7 @@ if isdirectory(s:clang_library_path)
     let g:clang_library_path=s:clang_library_path
 endif
 
+let g:goldenview__enable_default_mapping = 0
 let &keywordprg = ':help'
 
 let g:airline#extensions#tabline#enabled = 1
@@ -52,8 +62,10 @@ if has("gui_running")
 endif
 
 if has("autocmd")
-    autocmd BufWritePost .vimrc source $MYVIMRC
+    "autocmd BufWritePost .vimrc source $MYVIMRC
+    autocmd Filetype cpp setlocal makeprg=g++\ -O2\ -std=c++11\ -o\ %:r\ % 
 endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
@@ -63,15 +75,15 @@ endif
 nnoremap <silent> <C-N> :tabnew<CR>
 
 set hidden
-nnoremap <C-Q> :BD<CR>
-inoremap <C-Q> :BD<CR>
+nnoremap <silent> <C-Q> :bd<CR>
+inoremap <silent> <C-Q> <Esc> :bd<CR>
 "nnoremap <silent> <C-Q> :bp<bar>confirm bd#<CR>
 "inoremap <silent> <C-Q> <Esc>:bp<bar>confirm bd#<CR>
 
 nmap <silent><C-s> :up <CR>
 imap <silent><C-s> <Esc>:up <CR>i
 nmap <silent> <F9> :NERDTreeToggle <CR>
-nnoremap <silent><leader>h <Esc>:call ToggleHardMode()<CR>
+nnoremap <silent> <leader>h :call ToggleHardMode()<CR>
 let g:HardMode_hjklLimit=2
 
 vnoremap < <gv
@@ -172,6 +184,9 @@ set foldlevelstart=20
 nmap <space> za
 
 set autochdir
+set autoread
+set autowrite
+
 set gdefault
 set wildmenu
 set showcmd
@@ -200,8 +215,8 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-nmap <F5> :up <bar> make %:r <bar> !./%:r<CR>
-nmap <F6> :up <bar> make %:r<CR>
+nmap <F5> :!touch in.txt; ./%:r < in.txt <CR>
+nmap <F6> make <CR>
 nnoremap <silent><M-C-n> :bn<CR>  
 nnoremap <silent><M-C-p> :bN<CR>
 if has('gui_macvim')
@@ -212,6 +227,8 @@ endif
 set scrolloff=4
 set mouse=a
 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 augroup ft_vim
     au!
     au FileType vim setlocal foldmethod=marker
@@ -220,7 +237,8 @@ augroup END
 
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
-
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:UltiSnipsExpandTrigger = '<C-j>'
 
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
