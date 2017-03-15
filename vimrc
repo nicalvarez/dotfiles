@@ -3,14 +3,12 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 
-imap <C-w> <Nop>
-
 let g:tex_comment_nospell=1
 let g:tex_flavor='latex'
 
 colorscheme desert
 set number 
-set relativenumber
+set norelativenumber
 set autochdir
 
 set ignorecase
@@ -46,7 +44,7 @@ augroup latex
     "autocmd FileType tex map <f9> :up<cr>:!pdflatex tesis<cr>
     autocmd FileType tex map <f5> :!xdg-open %:r.pdf & <enter>
     autocmd FileType tex set spell
-    autocmd FileType tex set spelllang=es
+    autocmd FileType tex set spelllang=en
 augroup END 
 
 
