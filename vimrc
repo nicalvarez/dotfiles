@@ -1,16 +1,9 @@
-call plug#begin('~/.vim/plugged')
-"Plug 'lervag/vimtex'
-call plug#end()
-
-
 imap <C-w> <Nop>
 
-let g:tex_comment_nospell=1
-let g:tex_flavor='latex'
 
 colorscheme desert
 set number 
-set relativenumber
+set norelativenumber
 set autochdir
 
 set ignorecase
@@ -55,3 +48,4 @@ set splitright
 set nobackup
 set nowritebackup
 set noswapfile
+
