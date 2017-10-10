@@ -5,6 +5,8 @@ colorscheme desert
 set number 
 set norelativenumber
 set autochdir
+set colorcolumn=80
+
 
 set ignorecase
 set showcmd
