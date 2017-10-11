@@ -56,3 +56,4 @@ set splitright
 set nobackup
 set nowritebackup
 set noswapfile
+
