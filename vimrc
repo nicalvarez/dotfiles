@@ -2,7 +2,7 @@ colorscheme desert
 set number 
 set norelativenumber
 set autochdir
-set colorcolumn=80
+"set colorcolumn=80
 
 
 set ignorecase
@@ -38,7 +38,7 @@ nnoremap <silent> ]B :bl<CR>
 
 augroup cpp
     autocmd!
-    autocmd FileType cpp map <f9> :w<enter> :!g++ -Wno-unused-result -O2 -DLOCAL -std=c++14 -g %<enter>
+    autocmd FileType cpp map <f9> :w<enter> :!g++ -Wno-unused-result -O2 -DLOCAL -std=c++14 -g3 -pg %<enter>
     autocmd FileType cpp map <f5> :!./a.out < in.txt<enter>
     autocmd FileType cpp map <f6> :!./a.out <enter>
 augroup END 
