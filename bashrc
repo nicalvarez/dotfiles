@@ -117,10 +117,13 @@ if ! shopt -oq posix; then
 fi
 
 alias open=xdg-open
-source ~/Development/fastai/courses/setup/aws-alias.sh
+#source ~/Development/fastai/courses/setup/aws-alias.sh
 
 # added by Anaconda3 installer
 export PATH="/home/nicolas/anaconda3/bin:$PATH"
 
 . /home/nicolas/anaconda3/etc/profile.d/conda.sh
 conda activate
+
+# added by Miniconda3 installer
+export PATH="/home/nicolas/anaconda3/bin:$PATH"
