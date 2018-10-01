@@ -1,4 +1,8 @@
-colorscheme desert
+"colorscheme desert
+colorscheme solarized8
+set background=dark
+set guifont=Monospace\ 12
+
 set number 
 set norelativenumber
 set autochdir
@@ -8,13 +12,18 @@ set autochdir
 set ignorecase
 set showcmd
 
+" Asi veo la lightline
+set laststatus=2
+
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-set smartindent
-set cindent
+" Indentación
+set autoindent
+filetype indent on
+"set cindent
 
 set clipboard=unnamedplus
 
@@ -30,17 +39,25 @@ vmap < <gv
 map j gj
 map k gk
 
+" Y ya que estamos, no wrapeemos
+set nowrap
+
+
 " Navegacion de buffers
 nnoremap <silent> [b :bp<CR>
 nnoremap <silent> ]b :bn<CR>
 nnoremap <silent> [B :bf<CR>
 nnoremap <silent> ]B :bl<CR>
 
+" Write cuando se necesita sudo
+cmap w!! w !sudo tee > /dev/null %
+
 augroup cpp
     autocmd!
     autocmd FileType cpp map <f9> :w<enter> :!g++ -Wno-unused-result -O2 -DLOCAL -std=c++14 -g3 -pg %<enter>
     autocmd FileType cpp map <f5> :!./a.out < in.txt<enter>
     autocmd FileType cpp map <f6> :!./a.out <enter>
+    autocmd BufEnter *.cpp :setlocal cindent cino=j1,(0,ws,Ws
 augroup END 
 
 augroup latex
