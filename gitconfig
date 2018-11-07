@@ -1,0 +1,10 @@
+[user]
+	email = nicolas@brightsector.com
+	name = Nicolás Álvarez
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+[push]
+	default = simple
