@@ -7,8 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+ZSH_THEME="wedisagree"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -119,3 +118,6 @@ alias open=xdg-open
 
 # Para no perder el current directory con nuevos tabs
 . /etc/profile.d/vte-2.91.sh
+
+# Habilitar siempre el proxy
+~/.ssh/proxy_connect.sh
