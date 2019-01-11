@@ -127,3 +127,9 @@ conda activate
 
 # added by Miniconda3 installer
 export PATH="/home/nicolas/anaconda3/bin:$PATH"
+
+function swap()         
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}
