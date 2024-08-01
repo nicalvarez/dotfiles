@@ -1,5 +1,32 @@
-"colorscheme desert
-colorscheme solarized8
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'tpope/vim-eunuch'
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
+
+colorscheme desert
+"colorscheme solarized8
 set background=dark
 set guifont=Monospace\ 12
 
@@ -54,7 +81,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 augroup cpp
     autocmd!
-    autocmd FileType cpp map <f9> :w<enter> :!g++ -Wno-unused-result -O2 -DLOCAL -std=c++14 -g3 -pg %<enter>
+    autocmd FileType cpp map <f9> :w<enter> :!g++ -Wno-unused-result -O2 -DLOCAL -std=c++20 -g3 -pg %<enter>
     autocmd FileType cpp map <f5> :!./a.out < in.txt<enter>
     autocmd FileType cpp map <f6> :!./a.out <enter>
     autocmd BufEnter *.cpp :setlocal cindent cino=j1,(0,ws,Ws
